@@ -102,7 +102,7 @@ export default function HistoryPage() {
           Game History
         </h1>
         <p className="text-gray-600">
-          {playerName}'s match history and statistics
+          {playerName}&apos;s match history and statistics
         </p>
       </div>
 
@@ -147,10 +147,8 @@ export default function HistoryPage() {
         {games.length === 0 ? (
           <div className="text-center py-12">
             <HistoryIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 mb-2">No games played yet</p>
-            <p className="text-sm text-gray-500">
-              Start playing to build your history!
-            </p>
+            <p className="text-gray-500">No games played yet</p>
+            <p className="text-sm text-gray-400 mt-2">Start playing to see your game history here!</p>
             <button
               onClick={() => router.push('/')}
               className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -235,7 +233,7 @@ export default function HistoryPage() {
             About Game History
           </h3>
           <p className="text-blue-800 text-sm">
-            This page shows all your completed games. Click "View Replay" to see 
+            This page shows all your completed games. Click &quot;View Replay&quot; to see 
             the move-by-move breakdown of any game. Your statistics are updated 
             in real-time as you play more games.
           </p>

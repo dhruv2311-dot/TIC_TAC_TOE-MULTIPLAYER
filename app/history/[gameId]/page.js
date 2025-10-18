@@ -19,6 +19,7 @@ export default function GameReplayPage() {
 
   useEffect(() => {
     fetchGameData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameId]);
 
   useEffect(() => {

@@ -73,7 +73,7 @@ export default function Home() {
               </li>
               <li className="flex items-start">
                 <span className="text-[var(--primary)] mr-2">•</span>
-                If all 9 squares are filled, it's a draw
+                If all 9 squares are filled, it&apos;s a draw
               </li>
             </ul>
           </div>

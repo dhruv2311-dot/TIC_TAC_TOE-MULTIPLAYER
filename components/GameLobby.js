@@ -226,7 +226,7 @@ export default function GameLobby() {
               >
                 <div>
                   <p className="font-medium text-[var(--text-primary)]">
-                    {game.player1.username}'s Game
+                    {game.player1.username}&apos;s Game
                   </p>
                   <p className="text-sm text-[var(--text-secondary)] mt-1">
                     Created {new Date(game.createdAt).toLocaleString()}

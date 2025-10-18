@@ -34,6 +34,7 @@ export default function GamePage() {
     }, 3000);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameId]);
 
   const fetchGameData = async (silent = false) => {
