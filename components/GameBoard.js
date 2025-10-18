@@ -13,7 +13,7 @@ export default function GameBoard({ board, onCellClick, disabled }) {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto p-6 gaming-card">
+    <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
       {board.map((cell, index) => {
         const isWinningCell = winningPositions?.includes(index);
         const isTaken = cell !== '';
@@ -25,23 +25,15 @@ export default function GameBoard({ board, onCellClick, disabled }) {
             disabled={disabled || isTaken}
             className={`
               aspect-square flex items-center justify-center
-              text-6xl font-black rounded-xl
-              transition-all duration-300
+              text-5xl font-bold rounded-lg
+              transition-all duration-200
               ${isTaken ? 'cell-taken' : 'cell-hover'}
               ${isWinningCell ? 'winning-cell' : ''}
-              ${!disabled && !isTaken ? 'hover:scale-110' : ''}
-              ${cell === 'X' ? 'text-cyan-400 neon-text' : cell === 'O' ? 'text-pink-400 neon-text' : ''}
-              relative
+              ${!disabled && !isTaken ? 'hover:scale-105' : ''}
+              ${cell === 'X' ? 'text-[var(--primary)]' : cell === 'O' ? 'text-[var(--danger)]' : ''}
             `}
           >
-            {cell && (
-              <span className="relative z-10 drop-shadow-[0_0_15px_currentColor]">
-                {cell}
-              </span>
-            )}
-            {!isTaken && !disabled && (
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 rounded-xl opacity-0 hover:opacity-100 transition-opacity"></div>
-            )}
+            {cell}
           </button>
         );
       })}

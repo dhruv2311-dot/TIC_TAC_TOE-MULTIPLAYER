@@ -5,13 +5,13 @@ import Navigation from '@/components/Navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Tic Tac Toe Arena | Pro Gaming',
-  description: 'Professional multiplayer Tic Tac Toe arena. Compete, dominate, and climb the leaderboard!',
-  keywords: ['tic tac toe', 'multiplayer', 'game', 'esports', 'gaming', 'arena'],
-  authors: [{ name: 'Gaming Arena' }],
+  title: 'Tic Tac Toe | Multiplayer Gaming',
+  description: 'Play Tic Tac Toe online with friends. Modern multiplayer gaming experience.',
+  keywords: ['tic tac toe', 'multiplayer', 'game', 'online', 'gaming'],
+  authors: [{ name: 'Gaming Platform' }],
   openGraph: {
-    title: 'Tic Tac Toe Arena - Pro Gaming',
-    description: 'Professional multiplayer gaming arena',
+    title: 'Tic Tac Toe Multiplayer',
+    description: 'Modern multiplayer gaming experience',
     type: 'website',
   },
 };
@@ -25,13 +25,13 @@ export default function RootLayout({ children }) {
           <main className="container mx-auto px-4 py-8 relative z-10">
             {children}
           </main>
-          <footer className="mt-16 py-8 text-center relative z-10 border-t border-cyan-500/20">
-            <div className="gaming-card max-w-4xl mx-auto p-6">
-              <p className="text-cyan-400 font-bold tracking-wider">
-                © 2024 TIC TAC TOE ARENA | PROFESSIONAL GAMING PLATFORM
+          <footer className="mt-16 py-8 text-center relative z-10 border-t border-[var(--border)]">
+            <div className="max-w-4xl mx-auto">
+              <p className="text-[var(--text-secondary)] font-medium">
+                © 2024 Tic Tac Toe Multiplayer
               </p>
-              <p className="text-cyan-300/60 text-sm mt-2">
-                Built with Next.js & MongoDB | Powered by Gaming Excellence
+              <p className="text-[var(--text-secondary)] text-sm mt-2 opacity-60">
+                Built with Next.js & MongoDB
               </p>
             </div>
           </footer>

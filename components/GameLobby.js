@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, LogIn, RefreshCw, Users, Swords, UserPlus, Zap } from 'lucide-react';
+import { Plus, LogIn, RefreshCw, Users } from 'lucide-react';
 
 export default function GameLobby() {
   const router = useRouter();
@@ -130,42 +130,35 @@ export default function GameLobby() {
   };
 
   return (
-    <div className="gaming-card p-8 hover-lift">
-      <div className="flex items-center justify-center mb-8">
-        <Swords className="w-8 h-8 text-cyan-400 icon-glow mr-3 animate-pulse" />
-        <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 uppercase tracking-wider">Battle Lobby</h2>
-      </div>
+    <div className="gaming-card p-8">
+      <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-6">Game Lobby</h2>
 
       {error && (
-        <div className="mb-4 p-4 gaming-card border-red-500/50 text-red-400 animate-fadeIn">
-          <div className="flex items-center">
-            <Zap className="w-5 h-5 mr-2" />
-            {error}
-          </div>
+        <div className="mb-4 p-4 bg-[var(--danger)]/10 border border-[var(--danger)]/30 rounded-lg text-[var(--danger)]">
+          {error}
         </div>
       )}
 
       {!playerId ? (
         <form onSubmit={handleCreatePlayer} className="mb-8">
-          <label className="block text-sm font-bold text-cyan-400 mb-3 uppercase tracking-wider">
-            <UserPlus className="w-4 h-4 inline mr-2" />
-            Register Warrior Name
+          <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
+            Enter your username to get started
           </label>
           <div className="flex gap-3">
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter warrior name (min 3 characters)"
-              className="flex-1 px-4 py-3 gaming-card border-cyan-500/30 text-cyan-100 placeholder-cyan-400/40 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 transition-all"
+              placeholder="Enter username (min 3 characters)"
+              className="flex-1 px-4 py-3 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-secondary)]/50 focus:border-[var(--primary)] focus:outline-none transition-all"
               disabled={loading}
             />
             <button
               type="submit"
               disabled={loading}
-              className="neon-button relative z-10"
+              className="neon-button"
             >
-              {loading ? 'REGISTERING...' : 'REGISTER'}
+              {loading ? 'Creating...' : 'Create Player'}
             </button>
           </div>
         </form>
@@ -173,8 +166,8 @@ export default function GameLobby() {
         <div className="mb-8">
           <div className="status-badge flex items-center justify-between p-4">
             <div>
-              <p className="text-sm text-cyan-400/60 uppercase tracking-wide">Active Warrior</p>
-              <p className="text-xl font-black text-cyan-400">{username}</p>
+              <p className="text-sm text-[var(--text-secondary)]">Logged in as</p>
+              <p className="text-lg font-semibold text-[var(--text-primary)]">{username}</p>
             </div>
             <button
               onClick={() => {
@@ -182,9 +175,9 @@ export default function GameLobby() {
                 setUsername('');
                 localStorage.removeItem('player');
               }}
-              className="px-4 py-2 text-sm text-cyan-400/60 hover:text-cyan-400 transition-colors uppercase tracking-wider font-bold"
+              className="px-4 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
-              Switch
+              Switch Player
             </button>
           </div>
 
@@ -195,12 +188,12 @@ export default function GameLobby() {
               className="flex-1 neon-button flex items-center justify-center gap-2"
             >
               <Plus size={20} />
-              Create Arena
+              Create New Game
             </button>
             <button
               onClick={fetchOpenGames}
               disabled={loading}
-              className="px-6 py-4 gaming-card border-cyan-500/30 text-cyan-400 hover:border-cyan-400 transition-all"
+              className="px-6 py-3 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg text-[var(--text-secondary)] hover:border-[var(--primary)] hover:text-[var(--text-primary)] transition-all"
             >
               <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
             </button>
@@ -211,18 +204,17 @@ export default function GameLobby() {
       {/* Open Games List */}
       <div>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-bold text-cyan-400 uppercase tracking-wider">
-            <Swords className="w-5 h-5 inline mr-2" />
-            Open Arenas ({openGames.length})
+          <h3 className="text-xl font-semibold text-[var(--text-primary)]">
+            Open Games ({openGames.length})
           </h3>
         </div>
 
         {openGames.length === 0 ? (
-          <div className="text-center py-12 gaming-card border-cyan-500/20">
-            <Users className="w-16 h-16 text-cyan-400/40 mx-auto mb-4 icon-glow" />
-            <p className="text-cyan-300/60 font-bold">No Active Arenas</p>
-            <p className="text-sm text-cyan-400/40 mt-2 uppercase tracking-wide">
-              Create a new arena to begin!
+          <div className="text-center py-12 gaming-card">
+            <Users className="w-16 h-16 text-[var(--text-secondary)]/40 mx-auto mb-4" />
+            <p className="text-[var(--text-secondary)]">No open games available</p>
+            <p className="text-sm text-[var(--text-secondary)]/60 mt-2">
+              Create a new game to get started!
             </p>
           </div>
         ) : (
@@ -230,24 +222,23 @@ export default function GameLobby() {
             {openGames.map((game) => (
               <div
                 key={game._id}
-                className="gaming-card p-4 border-cyan-500/30 hover:border-cyan-400/60 transition-all hover-lift flex items-center justify-between"
+                className="gaming-card p-4 hover-lift flex items-center justify-between"
               >
                 <div>
-                  <p className="font-bold text-cyan-300 uppercase tracking-wide">
-                    <Swords className="w-4 h-4 inline mr-2" />
-                    {game.player1.username}'s Arena
+                  <p className="font-medium text-[var(--text-primary)]">
+                    {game.player1.username}'s Game
                   </p>
-                  <p className="text-sm text-cyan-400/60 mt-1">
+                  <p className="text-sm text-[var(--text-secondary)] mt-1">
                     Created {new Date(game.createdAt).toLocaleString()}
                   </p>
                 </div>
                 <button
                   onClick={() => handleJoinGame(game._id)}
                   disabled={loading || game.player1._id === playerId}
-                  className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-green-500/20 to-cyan-500/20 border-2 border-green-400/50 text-green-400 rounded-lg hover:border-green-400 hover:bg-green-500/30 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold uppercase text-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-[var(--success)] text-white rounded-lg hover:bg-[var(--success)]/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-medium"
                 >
                   <LogIn size={18} />
-                  Enter
+                  Join Game
                 </button>
               </div>
             ))}
